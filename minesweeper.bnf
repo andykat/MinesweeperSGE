@@ -1,0 +1,17 @@
+<code>::=<blockStatement>_{_<code>_}_\n_<code>|<equation>_\n_<code>|<equation>
+<blockStatement>::=<forExp>|<ifExp>
+<forExp>::=for _<tempvar>_ in range(_<startVar>_,_<endVar>_):\n
+<ifExp>::=if _<var>_<relationOperator>_<expr>_:\n
+<equation>::=<setVar>_<equationOp>_<expr>
+<expr>::=<var>_<op>_<var>|<var>
+<startVar>::=-1|0|a[_<aIndex>_]
+<endVar>::=size|2|a[_<aIndex>_]
+<var>::=m.pBoard[_<xIndex>_][_<yIndex>_]|size|0|1|(-1)|a[_<aIndex>_]|<tempvar>|ansX|ansY|action
+<relationOperator>::=less|greater|==
+<setVar>::=ansX|ansY|action|a[_<aIndex>_]
+<equationOp>::=+=|=
+<op>::=+|-
+<tempvar>::=i|j|k
+<aIndex>::=0|1|2|3
+<xIndex>::=i|j|k|ansX
+<yIndex>::=i|j|k|ansY
