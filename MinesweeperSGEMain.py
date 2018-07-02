@@ -12,9 +12,13 @@ import Minesweeper.MinesweeperSGE as sge
 #
 ge = sge.MinesweeperSGE()
 ge.populationSize = 50
+
+#number of recursive levels
 ge.recursionMax = 8
 ge.read_bnf_file("minesweeper.bnf")
 bestResults=ge.runIterations(40)
+
+#print top 5 codes, and their fitness
 for i in range(0,5):
     phen = ge.translateSeqToPhenotype(bestResults[0][i])[0][0]
     code = ge.translateObjectsIntoCode(phen)

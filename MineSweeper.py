@@ -1,4 +1,6 @@
 import random
+#Minesweeper Game
+#Allows for the g.e. to do clicks and flags on a minesweeper board
 class Mines:
     #0   nothing
     # -1 mine
@@ -60,6 +62,8 @@ class Mines:
                 tString += str(self.pBoard[i][j]) + "\t"
             tString += "\n"
             print(tString)
+
+    #fills out all the 0's and adjacent fields
     def flood(self, x, y):
         self.pBoard[x][y] = 0
         for i in range(0, len(self.xFloodDir)):
@@ -70,6 +74,8 @@ class Mines:
                                 self.flood(x + self.xFloodDir[i], y + self.yFloodDir[j])
                             else:
                                 self.select(x + self.xFloodDir[i], y + self.yFloodDir[j], "click")
+
+    #clicks a "zero" on the board to make it easier to find subsequent clicks
     def selectZeroFirst(self):
         for i in range(0, self.size):
             for j in range(0, self.size):
@@ -78,6 +84,8 @@ class Mines:
                     return
         return
 
+    #takes in a coordinate and an action ("click" or "flag).
+    #returns True is the move is allowed and carries out the move, and False otherwise
     def select(self, x, y, action):
         if self.validate(x, y):
             if self.pBoard[x][y] == -3:
@@ -95,7 +103,7 @@ class Mines:
                         return True
         return False
 
-
+    #checks if coordinate is valid
     def validate(self, x, y):
         if x > -1 and x < self.size and y > -1 and y < self.size:
             return True

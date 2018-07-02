@@ -450,6 +450,8 @@ class MinesweeperSGE:
 
         self.currentPopulation = self.newpopulation
 
+    #translate the phenotype into code. Appends necessary initializations at the beginning
+    #and an answer saving function at the end
     def translateObjectsIntoCode(self, objects):
         code = ""
         for s in objects:
@@ -490,11 +492,15 @@ class MinesweeperSGE:
         self.ansX = ansX
         self.ansY = ansY
         self.action = action
+
+    #calculates the fitness of the program by using it to play minesweeper
     def minesweeperFitness(self, code):
         flag = True
         m = Mine.Mines(size = self.minesweeperSize, minesN = self.minesN)
         m.selectZeroFirst()
         count = 0
+        #repeatedly run the code to get moves, and see if the move is valid
+        #keep count of the number of successful moves
         while flag:
             try:
                 exec(code)
@@ -509,6 +515,7 @@ class MinesweeperSGE:
                 # print("indexError")
                 flag = False
 
+        #normalize the fitness by making it between 0 and 1
         return float(count)/float(self.minesweeperSize)/float(self.minesweeperSize)
 
 class Rule:
